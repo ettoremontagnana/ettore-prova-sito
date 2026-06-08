@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'Arte del Tempo — Storia dell'Orologio da Polso</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Tenor+Sans&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ivory:#F7F4EE; --cream:#EDE8DC; --parchment:#E2DACC;
+  --ink:#0F0D0A; --ink2:#1E1B16; --charcoal:#3A3630; --muted:#7A7468;
+  --gold:#8B6914; --gold2:#B08D30; --gold3:#C9A84C;
+  --rule:rgba(139,105,20,0.25); --rule-dark:rgba(15,13,10,0.12);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--ivory);color:var(--ink);font-family:'Libre Baskerville',Georgia,serif;font-size:16px;line-height:1.75;cursor:default;}
+::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:var(--cream);}::-webkit-scrollbar-thumb{background:var(--gold2);}
+.label{font-family:'Tenor Sans',sans-serif;font-size:.62rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--ivory);border-bottom:1px solid var(--rule-dark);}
+.header-inner{max-width:1200px;margin:0 auto;padding:0 3.5rem;height:64px;display:flex;align-items:center;justify-content:space-between;}
+.logo-mark{display:flex;flex-direction:column;gap:2px;}
+.logo-main{font-family:'Playfair Display',serif;font-size:1rem;font-weight:500;letter-spacing:.12em;color:var(--ink);line-height:1;}
+.logo-sub{font-family:'Tenor Sans',sans-serif;font-size:.55rem;letter-spacing:.5em;color:var(--gold);text-transform:uppercase;}
+.header-right{display:flex;align-items:center;gap:3rem;}
+nav ul{list-style:none;display:flex;gap:2.5rem;}
+nav a{font-family:'Tenor Sans',sans-serif;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--charcoal);text-decoration:none;transition:color .25s;padding-bottom:2px;border-bottom:1px solid transparent;}
+nav a:hover{color:var(--gold);border-color:var(--gold2);}
+
+/* LANG SWITCHER */
+.lang-switcher{display:flex;align-items:center;gap:0;border:1px solid var(--rule-dark);}
+.lang-btn{font-family:'Tenor Sans',sans-serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;background:none;border:none;cursor:pointer;padding:.35rem .6rem;color:var(--muted);transition:color .2s,background .2s;line-height:1;}
+.lang-btn:not(:last-child){border-right:1px solid var(--rule-dark);}
+.lang-btn:hover{color:var(--gold);}
+.lang-btn.active{background:var(--ink2);color:var(--gold3);}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:64px;}
+.hero-left{background:var(--ink2);display:flex;flex-direction:column;justify-content:flex-end;padding:6rem 5rem;position:relative;overflow:hidden;}
+.hero-left::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(255,255,255,.022) 31px,rgba(255,255,255,.022) 32px);}
+.hero-medallion{position:absolute;top:3rem;right:3rem;width:160px;height:160px;}
+.hero-medallion svg{width:100%;height:100%;opacity:.18;animation:rotateM 80s linear infinite;}
+@keyframes rotateM{to{transform:rotate(360deg);}}
+.hero-label{font-family:'Tenor Sans',sans-serif;font-size:.6rem;letter-spacing:.5em;text-transform:uppercase;color:var(--gold3);margin-bottom:2rem;opacity:0;animation:appear 1s .4s forwards;}
+.hero-h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,5.5vw,5.5rem);font-weight:400;line-height:1.05;color:var(--ivory);margin-bottom:2.5rem;opacity:0;animation:appear 1s .7s forwards;}
+.hero-h1 em{font-style:italic;color:var(--gold3);}
+.hero-rule{width:48px;height:1px;background:var(--gold2);margin-bottom:1.8rem;opacity:0;animation:appear 1s 1s forwards;}
+.hero-caption{font-family:'Libre Baskerville',serif;font-size:.88rem;font-style:italic;color:rgba(247,244,238,.5);max-width:340px;line-height:1.7;opacity:0;animation:appear 1s 1.2s forwards;}
+@keyframes appear{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+.hero-right{background:var(--cream);display:flex;align-items:center;justify-content:center;padding:4rem;position:relative;}
+.dial-wrap{position:relative;width:360px;height:360px;}
+.dial-outer{position:absolute;inset:0;border-radius:50%;background:var(--ivory);border:1px solid var(--rule-dark);box-shadow:0 0 0 8px var(--cream),0 0 0 9px var(--rule-dark),0 24px 80px rgba(15,13,10,.1);}
+.dial-inner{position:absolute;inset:18px;border-radius:50%;border:1px solid var(--rule-dark);}
+.dial-chapter{position:absolute;inset:0;border-radius:50%;}
+.dial-brand{position:absolute;top:38%;left:0;right:0;text-align:center;font-family:'Playfair Display',serif;font-size:.65rem;letter-spacing:.3em;color:var(--charcoal);text-transform:uppercase;}
+.dial-model{position:absolute;top:55%;left:0;right:0;text-align:center;font-family:'Tenor Sans',sans-serif;font-size:.5rem;letter-spacing:.4em;color:var(--muted);text-transform:uppercase;}
+.hand{position:absolute;left:50%;bottom:50%;transform-origin:50% 100%;border-radius:2px 2px 0 0;}
+.hand-h{width:3px;height:80px;background:var(--ink2);margin-left:-1.5px;}
+.hand-m{width:2px;height:110px;background:var(--ink2);margin-left:-1px;}
+.hand-s{width:1px;height:120px;background:var(--gold);margin-left:-.5px;}
+.dial-center{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--ink);top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;}
+
+/* LAYOUT */
+.page-section{max-width:1200px;margin:0 auto;padding:7rem 3.5rem;}
+.section-header{display:grid;grid-template-columns:1fr auto;align-items:baseline;border-top:1px solid var(--rule-dark);padding-top:2rem;margin-bottom:5rem;}
+.section-title{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:400;color:var(--ink);}
+
+/* ORIGINI */
+#origini{background:var(--ivory);border-bottom:1px solid var(--rule-dark);}
+.intro-cols{display:grid;grid-template-columns:5fr 4fr;gap:7rem;align-items:start;}
+.intro-cols p{font-size:1rem;color:var(--charcoal);margin-bottom:1.4rem;}
+.intro-cols p:first-child::first-letter{font-family:'Playfair Display',serif;font-size:3.8rem;font-weight:700;line-height:.75;float:left;margin-right:.1em;margin-top:.12em;color:var(--gold);}
+.pull-quote{border-left:2px solid var(--gold2);padding:1.2rem 0 1.2rem 2rem;margin:3rem 0 0;}
+.pull-quote p{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;color:var(--ink2);line-height:1.5;margin:0 0 .6rem;}
+.pull-quote cite{font-family:'Tenor Sans',sans-serif;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-style:normal;}
+
+/* TIMELINE */
+#storia{background:var(--parchment);}
+.tl-grid{display:grid;grid-template-columns:120px 1px 1fr;gap:0;}
+.tl-spine{grid-column:2;grid-row:1/99;background:linear-gradient(to bottom,transparent,var(--gold2) 5%,var(--gold2) 95%,transparent);opacity:.35;}
+.tl-year{grid-column:1;padding:0 2rem 4rem 0;text-align:right;padding-top:.15rem;}
+.tl-year-num{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--gold);display:block;line-height:1;}
+.tl-year-brand{font-family:'Tenor Sans',sans-serif;font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);display:block;margin-top:4px;}
+.tl-node{grid-column:2;display:flex;justify-content:center;padding-top:.3rem;z-index:2;}
+.tl-dot{width:9px;height:9px;border-radius:50%;background:var(--ivory);border:2px solid var(--gold2);flex-shrink:0;}
+.tl-body{grid-column:3;padding:0 0 4rem 2.5rem;}
+.tl-title{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:400;color:var(--ink);margin-bottom:.7rem;}
+.tl-title em{font-style:italic;color:var(--gold);}
+.tl-text{font-size:.92rem;color:var(--charcoal);max-width:600px;line-height:1.8;}
+.tl-model-tag{display:inline-block;margin-top:1rem;font-family:'Tenor Sans',sans-serif;font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);border:1px solid var(--rule);padding:.35rem .8rem;}
+
+/* MAISON */
+#maison{background:var(--ivory);}
+.maison-list{display:flex;flex-direction:column;}
+.maison-item{display:grid;grid-template-columns:220px 1fr 1fr;gap:3rem;padding:3rem 0;border-bottom:1px solid var(--rule-dark);opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s;}
+.maison-item.visible{opacity:1;transform:none;}
+.maison-num{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:400;color:var(--cream);line-height:1;display:block;margin-bottom:-.3rem;}
+.maison-name{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--ink);display:block;margin-bottom:.3rem;}
+.maison-founded{font-family:'Tenor Sans',sans-serif;font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);}
+.maison-desc{font-size:.92rem;color:var(--charcoal);line-height:1.8;}
+.maison-notable-label{font-family:'Tenor Sans',sans-serif;font-size:.58rem;letter-spacing:.4em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:1rem;border-top:1px solid var(--rule-dark);padding-top:1rem;}
+.maison-models{list-style:none;}
+.maison-models li{font-family:'Playfair Display',serif;font-style:italic;font-size:.95rem;color:var(--ink2);padding:.25rem 0;border-bottom:1px solid var(--rule-dark);}
+
+/* INNOVAZIONI */
+#innovazioni{background:var(--ink2);}
+#innovazioni .section-header{border-color:rgba(247,244,238,.1);}
+#innovazioni .section-title{color:var(--ivory);}
+#innovazioni .label{color:var(--gold3);}
+.inn-table{width:100%;border-collapse:collapse;}
+.inn-table thead th{font-family:'Tenor Sans',sans-serif;font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold2);text-align:left;padding:0 1.5rem 1.5rem 0;border-bottom:1px solid rgba(184,150,62,.3);font-weight:400;}
+.inn-table tbody tr{border-bottom:1px solid rgba(247,244,238,.06);transition:background .2s;}
+.inn-table tbody tr:hover{background:rgba(247,244,238,.03);}
+.inn-table td{padding:1.4rem 1.5rem 1.4rem 0;font-size:.88rem;color:rgba(247,244,238,.65);vertical-align:top;}
+.inn-table td:first-child{font-family:'Playfair Display',serif;font-size:1rem;color:var(--gold3);white-space:nowrap;}
+.inn-table td:nth-child(2){font-style:italic;color:var(--ivory);font-size:.95rem;}
+.inn-table td:nth-child(3){font-family:'Tenor Sans',sans-serif;font-size:.7rem;letter-spacing:.1em;color:var(--gold2);}
+
+/* FOOTER */
+footer{background:var(--ink);padding:4rem 3.5rem;}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;border-top:1px solid rgba(247,244,238,.08);padding-top:3rem;}
+.footer-brand{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:400;color:var(--ivory);display:block;margin-bottom:.5rem;}
+.footer-tagline{font-family:'Libre Baskerville',serif;font-style:italic;font-size:.85rem;color:rgba(247,244,238,.35);}
+.footer-sources p{font-family:'Tenor Sans',sans-serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2);margin-bottom:1rem;}
+.footer-sources ul{list-style:none;}
+.footer-sources li{font-size:.82rem;color:rgba(247,244,238,.35);font-style:italic;padding:.25rem 0;border-bottom:1px solid rgba(247,244,238,.05);font-family:'Libre Baskerville',serif;}
+
+@media(max-width:900px){
+  .header-inner{padding:0 1.5rem;flex-wrap:wrap;height:auto;gap:.5rem;padding-top:.5rem;padding-bottom:.5rem;}
+  .header-right{flex-wrap:wrap;gap:1rem;}
+  nav ul{gap:1rem;}
+  .hero{grid-template-columns:1fr;}
+  .hero-right{display:none;}
+  .hero-left{min-height:100vh;padding:5rem 2rem 4rem;}
+  .page-section{padding:5rem 1.5rem;}
+  .intro-cols{grid-template-columns:1fr;gap:0;}
+  .tl-grid{grid-template-columns:80px 1px 1fr;}
+  .maison-item{grid-template-columns:1fr;gap:1.5rem;}
+  .maison-num{font-size:2rem;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-mark">
+      <span class="logo-main" data-i18n="logoMain">L'Arte del Tempo</span>
+      <span class="logo-sub" data-i18n="logoSub">Storia dell'Orologeria da Polso</span>
+    </div>
+    <div class="header-right">
+      <nav>
+        <ul>
+          <li><a href="#origini" data-i18n="navOrigini">Origini</a></li>
+          <li><a href="#storia" data-i18n="navStoria">Cronologia</a></li>
+          <li><a href="#maison" data-i18n="navMaison">Maison</a></li>
+          <li><a href="#innovazioni" data-i18n="navInnovazioni">Innovazioni</a></li>
+        </ul>
+      </nav>
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="it">IT</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-medallion">
+      <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="80" cy="80" r="76" fill="none" stroke="#C9A84C" stroke-width="0.5"/>
+        <circle cx="80" cy="80" r="66" fill="none" stroke="#C9A84C" stroke-width="0.3"/>
+        <circle cx="80" cy="80" r="56" fill="none" stroke="#C9A84C" stroke-width="0.5" stroke-dasharray="2 4"/>
+        <path d="M80 12 L82 20 L80 18 L78 20 Z" fill="#C9A84C" opacity="0.8"/>
+        <path d="M80 148 L82 140 L80 142 L78 140 Z" fill="#C9A84C" opacity="0.8"/>
+        <path d="M12 80 L20 82 L18 80 L20 78 Z" fill="#C9A84C" opacity="0.8"/>
+        <path d="M148 80 L140 82 L142 80 L140 78 Z" fill="#C9A84C" opacity="0.8"/>
+      </svg>
+    </div>
+    <span class="hero-label" data-i18n="heroLabel">Una storia di precisione &amp; arte</span>
+    <h1 class="hero-h1" data-i18n-html="heroH1">L'Arte<br><em>del Tempo</em></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-caption" data-i18n="heroCaption">Dall'orologio da tasca al polso: due secoli di ingegneria, estetica e ossessione per la perfezione nei grandi ateliers di Ginevra, Le Brassus e Glashütte.</p>
+  </div>
+  <div class="hero-right">
+    <div class="dial-wrap" id="heroDial">
+      <div class="dial-outer"></div>
+      <div class="dial-inner"></div>
+      <div class="dial-chapter" id="dialChapter"></div>
+      <span class="dial-brand">Maison du Temps</span>
+      <span class="dial-model">Grande Complication</span>
+      <div class="hand hand-h" id="handH"></div>
+      <div class="hand hand-m" id="handM"></div>
+      <div class="hand hand-s" id="handS"></div>
+      <div class="dial-center"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ORIGINI -->
+<section id="origini">
+  <div class="page-section">
+    <div class="section-header">
+      <h2 class="section-title" data-i18n="secOriginiTitle">Origini</h2>
+      <span class="label" data-i18n="secOriginiLabel">Dal 1868</span>
+    </div>
+    <div class="intro-cols">
+      <div>
+        <p data-i18n="origP1">L'orologio da polso nasce come oggetto femminile — un gioiello con movimento — nella seconda metà dell'Ottocento. Fu Patek Philippe, nel 1868, a produrre per la Contessa Koscowicz d'Ungheria il primo esemplare documentato: un bracciale decorato con un minuscolo calibro a carica manuale. Non uno strumento, ma un ornamento che misurava il tempo per caso.</p>
+        <p data-i18n="origP2">Tutto cambia con i conflitti militari. Durante la Seconda Guerra Boera (1899–1902), i soldati britannici iniziarono a legare al polso con strisce di cuoio i loro orologi da tasca, per avere le mani libere in combattimento. L'efficienza militare trasformò un oggetto di lusso femminile in una necessità maschile.</p>
+        <p data-i18n="origP3">Nel 1904, Louis Cartier — su richiesta dell'aviatore brasiliano Alberto Santos-Dumont, stanco di tirar fuori l'orologio dalla tasca mentre pilotava — progettò la <em>Santos</em>: cassa quadrata, bracciale in pelle, viti a vista. Il primo orologio da polso maschile di design. Da quel momento il polso non fu più solo un'articolazione anatomica ma una superficie di dichiarazione.</p>
+        <div class="pull-quote">
+          <p data-i18n="pullQuote">"Non si possiede mai un Patek Philippe. Lo si custodisce per la prossima generazione."</p>
+          <cite data-i18n="pullCite">Patek Philippe — Motto istituzionale, campagna 1996</cite>
+        </div>
+      </div>
+      <div>
+        <p data-i18n="origP4">La Grande Guerra (1914–18) fu il vero battesimo di massa. Milioni di soldati tornarono dal fronte con l'orologio al polso: un'abitudine nuova che nel dopoguerra diventò norma sociale. Le manifatture svizzere, concentrate nel Giura e nella Valle de Joux, si trovarono davanti una domanda industriale per un prodotto che avevano sempre fatto artigianalmente.</p>
+        <p data-i18n="origP5">La risposta fu tecnica prima che estetica: casse più robuste, movimenti antiurto, cristalli più resistenti. Ma anche estetica: il quadrante divenne un campo di progettazione, le lancette oggetti di stile, il bracciale una questione di identità. In meno di trent'anni l'orologio da polso aveva soppiantato quello da tasca in tutti gli strati sociali.</p>
+        <p data-i18n="origP6">Ciò che seguì — negli anni Trenta, Cinquanta, negli anni ruggenti prima della crisi al quarzo — è la storia di come una decina di manifatture svizzere, tedesche e francesi abbiano definito il linguaggio visivo e meccanico del tempo misurato sul corpo umano.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="storia">
+  <div class="page-section">
+    <div class="section-header">
+      <h2 class="section-title" data-i18n="secStoriaTitle">Cronologia</h2>
+      <span class="label" data-i18n="secStoriaLabel">1868 — Oggi</span>
+    </div>
+    <div class="tl-grid">
+      <div class="tl-spine"></div>
+
+      <div class="tl-year"><span class="tl-year-num">1868</span><span class="tl-year-brand">Patek Philippe</span></div>
+      <div class="tl-node"><div class="tl-dot"></div></div>
+      <div class="tl-body">
+        <h3 class="tl-title" data-i18n="tl1868Title">Il primo orologio da polso documentato</h3>
+        <p class="tl-text" data-i18n="tl1868Text">Patek Philippe produce per la Contessa Koscowicz di Ungheria un orologio a forma di bracciale con calibro a carica manuale. È femminile, decorativo, più gioiello che strumento. Il movimento è minuscolo, la precisione secondaria all'estetica. È il punto zero.</p>
+        <span class="tl-model-tag">Ref. 97975 — Ginevra</span>
+      </div>
+
+      <div class="tl-year"><span class="tl-year-num">1904</span><span class="tl-year-brand">Cartier</span></div>
+      <div class="tl-node"><div class="tl-dot"></div></div>
+      <div class="tl-body">
+        <h3 class="tl-title" data-i18n-html="tl1904Title">Santos — <em>il polso diventa maschile</em></h3>
+        <p class="tl-text" data-i18n="tl1904Text">Louis Cartier disegna per l'aviatore Alberto Santos-Dumont il primo orologio da polso maschile di progetto consapevole. Cassa quadrata, viti a vista sul lunotto, bracciale integrato. La forma quadrata fu scelta per evitare che rotolasse sul cruscotto. Il razionale tecnico produce un'icona estetica senza tempo.</p>
+        <span class="tl-model-tag">Santos — Parigi</span>
+      </div>
+
+      <div class="tl-year"><span class="tl-year-num">1926</span><span class="tl-year-brand">Rolex</span></div>
+      <div class="tl-node"><div class="tl-dot"></div></div>
+      <div class="tl-body">
+        <h3 class="tl-title" data-i18n-html="tl1926Title">La prima cassa impermeabile — <em>Oyster</em></h3>
+        <p class="tl-text" data-i18n="tl1926Text">Hans Wilsdorf brevetta la cassa Oyster con corona a vite. Il sistema isola ermeticamente il movimento da acqua e polvere. Mercedes Gleitze attraversa la Manica con l'Oyster al polso per dimostrarlo al mondo. È il primo uso documentato di un'atleta come testimonial orologiero — un modello di marketing ancora dominante.</p>
+        <span class="tl-model-tag">Rolex Oyster — Ginevra</span>
+      </div>
+
+      <div class="tl-year"><span class="tl-year-num">1931</span><span class="tl-year-brand">Rolex</span></div>
+      <div class="tl-node"><div class="tl-dot"></div></div>
+      <div class="tl-body">
+        <h3 class="tl-title" data-i18n="tl1931Title">Il rotore perpetuo</h3>
+        <p class="tl-text" data-i18n="tl1931Text">Rolex introduce il meccanismo Perpetual: un rotore centrale a 360° che converte il movimento del polso in energia cinetica, ricaricando la molla motrice. Fine della carica manuale quotidiana. L'orologio diventa autonomo, quasi organico. Il principio meccanico è ancora alla base di tutti i movimenti automatici moderni.</p>
+        <span class="tl-model-tag">Rolex Oyster Perpetual — Ginevra</span>
+      </div>
+
+      <div class="tl-year"><span class="tl-year-num">1953</span><span class="tl-year-brand">Blancpain</span></div>
+      <div class="tl-node"><div class="tl-dot"></div></div>
+      <div class="tl-body">
+        <h3 class="tl-title" data-i18n-html="tl1953Title">Fifty Fathoms — <em>il subacqueo moderno</em></h3>
+        <p class="tl-text" data-i18n="tl1953Text">Blancpain produce su commissione della Marina militare francese il Fifty Fathoms: lunetta girevole unidirezionale, resistenza a 91 metri, quadrante ad alta leggibilità. La lunetta può solo decrementare il tempo residuo, mai aumentarlo — un vincolo di sicurezza diventato standard globale per ogni orologio da immersione.</p>
+        <span class="tl-model-tag">Blancpain Fifty Fathoms — Le Brassus</span>
+      </div>
+
+      <div class="tl-year"><span class="tl-year-num">1969</span><span class="tl-year-brand">Seiko</span></div>
+      <div class="tl-node"><div class="tl-dot"></div></div>
+      <div class="tl-body">
+        <h3 class="tl-title" data-i18n="tl1969Title">La crisi al quarzo</h3>
+        <p class="tl-text" data-i18n="tl1969Text">Seiko lancia l'Astron, il primo orologio al quarzo commerciale: oscillatore di cristallo a 8.192 Hz, precisione dieci volte superiore al meccanico, costo di produzione centesimale. In un decennio, centinaia di manifatture svizzere chiudono o vengono assorbite. La Quartz Crisis è la più grande disruption industriale della storia orologiera.</p>
+        <span class="tl-model-tag">Seiko Astron — Tokyo</span>
+      </div>
+
+      <div class="tl-year"><span class="tl-year-num">1972</span><span class="tl-year-brand">Audemars Piguet</span></div>
+      <div class="tl-node"><div class="tl-dot"></div></div>
+      <div class="tl-body">
+        <h3 class="tl-title" data-i18n-html="tl1972Title">Royal Oak — <em>l'acciaio diventa lusso</em></h3>
+        <p class="tl-text" data-i18n="tl1972Text">Gérald Genta disegna in una notte il Royal Oak per Audemars Piguet: cassa ottagonale in acciaio, viti a vista, bracciale integrato, quadrante "tapisserie". Primo orologio sportivo in acciaio venduto a prezzo superiore all'oro. Ridefinisce il lusso: non il materiale nobile, ma il progetto e la manifattura. La categoria "sport di lusso" nasce qui.</p>
+        <span class="tl-model-tag">AP Royal Oak Ref. 5402 — Le Brassus</span>
+      </div>
+
+      <div class="tl-year"><span class="tl-year-num">1994</span><span class="tl-year-brand">A. Lange & Söhne</span></div>
+      <div class="tl-node"><div class="tl-dot"></div></div>
+      <div class="tl-body">
+        <h3 class="tl-title" data-i18n="tl1994Title">La rinascita sassone</h3>
+        <p class="tl-text" data-i18n="tl1994Text">Dopo 46 anni di silenzio forzato (la manifattura fu nazionalizzata dalla DDR nel 1948), Walter Lange rifonda A. Lange & Söhne a Glashütte. Al Salone di Ginevra 1994 presenta quattro modelli tra cui il Lange 1: grande data decentrata a doppio disco, platina in tre quarti in argento, treno di carica visibile. La Sassonia riprende il posto che le spetta nell'alta orologeria mondiale.</p>
+        <span class="tl-model-tag">A. Lange & Söhne Lange 1 — Glashütte</span>
+      </div>
+
+      <div class="tl-year"><span class="tl-year-num">2015</span><span class="tl-year-brand">Apple</span></div>
+      <div class="tl-node"><div class="tl-dot"></div></div>
+      <div class="tl-body">
+        <h3 class="tl-title" data-i18n="tl2015Title">Il polso diventa schermo</h3>
+        <p class="tl-text" data-i18n="tl2015Text">Apple Watch ridefinisce la funzione del polso: notifiche, salute, pagamenti, comunicazione. Le vendite per numero di pezzi superano l'intera industria svizzera. La risposta meccanica è paradossale: il mercato dell'alta orologeria cresce in valore. Quando tutto misura il tempo perfettamente, l'imperfezione artigianale diventa l'argomento del lusso.</p>
+        <span class="tl-model-tag">Apple Watch Series 1 — Cupertino</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAISON -->
+<section id="maison">
+  <div class="page-section">
+    <div class="section-header">
+      <h2 class="section-title" data-i18n="secMaisonTitle">Le Maison</h2>
+      <span class="label" data-i18n="secMaisonLabel">Manifatture storiche</span>
+    </div>
+    <div class="maison-list">
+
+      <div class="maison-item">
+        <div class="maison-meta">
+          <span class="maison-num">I</span>
+          <span class="maison-name">Patek Philippe</span>
+          <span class="maison-founded" data-i18n="m1Founded">Fondata nel 1839 · Ginevra</span>
+        </div>
+        <div class="maison-desc"><p data-i18n="m1Desc">Manifattura indipendente a controllo familiare — l'unica tra i grandi nomi. Ogni movimento è assemblato, regolato e certificato Patek Philippe Seal internamente. Detiene il record di complicazione meccanica più alta: il Calibre 89 con 33 funzioni. Il tourbillon, il calendario perpetuo e la ripetizione minuti sono le specialità storiche. I prezzi sul mercato secondario spesso superano quelli di listino.</p></div>
+        <div class="maison-notable">
+          <span class="maison-notable-label" data-i18n="iconicModels">Modelli iconici</span>
+          <ul class="maison-models"><li>Calatrava Ref. 96 (1932)</li><li>Nautilus Ref. 3700 (1976)</li><li>Perpetual Calendar Ref. 3940</li><li>Grand Complications Ref. 5270</li></ul>
+        </div>
+      </div>
+
+      <div class="maison-item">
+        <div class="maison-meta">
+          <span class="maison-num">II</span>
+          <span class="maison-name">Audemars Piguet</span>
+          <span class="maison-founded" data-i18n="m2Founded">Fondata nel 1875 · Le Brassus</span>
+        </div>
+        <div class="maison-desc"><p data-i18n="m2Desc">L'unica grande manifattura ancora nella Valle de Joux, culla storica della Haute Horlogerie. Di proprietà delle famiglie fondatrici Audemars e Piguet. Il Royal Oak del 1972 ha ridefinito il lusso sportivo creando una categoria di mercato. Specialisti di tourbillon ultra-sottili: il Calibre 2924 misura 2,93 mm di spessore. L'audacia progettuale è il DNA del marchio.</p></div>
+        <div class="maison-notable">
+          <span class="maison-notable-label" data-i18n="iconicModels">Modelli iconici</span>
+          <ul class="maison-models"><li>Royal Oak Ref. 5402 (1972)</li><li>Royal Oak Offshore (1993)</li><li>Millenary Tourbillon</li><li>Code 11.59</li></ul>
+        </div>
+      </div>
+
+      <div class="maison-item">
+        <div class="maison-meta">
+          <span class="maison-num">III</span>
+          <span class="maison-name">A. Lange &amp; Söhne</span>
+          <span class="maison-founded" data-i18n="m3Founded">Fondata nel 1845 · Glashütte</span>
+        </div>
+        <div class="maison-desc"><p data-i18n="m3Desc">La risposta tedesca alla Haute Horlogerie svizzera, con un'estetica radicalmente diversa: platina in tre quarti in argento massiccio, viti azzurrate a mano, ruote dorate, rifinitura Glashütte visibile anche nelle parti non visibili al portatore. La grande data a doppio disco con salto istantaneo è un'invenzione Lange. Principio etico: ogni parte ha la stessa cura, vista o no.</p></div>
+        <div class="maison-notable">
+          <span class="maison-notable-label" data-i18n="iconicModels">Modelli iconici</span>
+          <ul class="maison-models"><li>Lange 1 (1994)</li><li>Datograph Perpetual</li><li>Zeitwerk</li><li>Tourbograph Perpetual</li></ul>
+        </div>
+      </div>
+
+      <div class="maison-item">
+        <div class="maison-meta">
+          <span class="maison-num">IV</span>
+          <span class="maison-name">Vacheron Constantin</span>
+          <span class="maison-founded" data-i18n="m4Founded">Fondata nel 1755 · Ginevra</span>
+        </div>
+        <div class="maison-desc"><p data-i18n="m4Desc">La manifattura orologiera con la storia continua più lunga del mondo — ininterrotta dal 1755. Il Poinçon de Genève, il marchio di qualità più severo dell'orologeria, contraddistingue ogni pezzo. Cultori della complicazione sottile: il Patrimony Contemporaine è tra i movimenti a carica manuale più piatti mai prodotti. Il Métiers d'Art unisce alta orologeria e arti decorative.</p></div>
+        <div class="maison-notable">
+          <span class="maison-notable-label" data-i18n="iconicModels">Modelli iconici</span>
+          <ul class="maison-models"><li>Patrimony Traditionnelle</li><li>Overseas (1996)</li><li>Les Cabinotiers Celestia</li><li>Historiques Cornes de Vache</li></ul>
+        </div>
+      </div>
+
+      <div class="maison-item">
+        <div class="maison-meta">
+          <span class="maison-num">V</span>
+          <span class="maison-name">Jaeger-LeCoultre</span>
+          <span class="maison-founded" data-i18n="m5Founded">Fondata nel 1833 · Le Sentier</span>
+        </div>
+        <div class="maison-desc"><p data-i18n="m5Desc">Chiamata "la Grande Maison" dalla Valle de Joux, Jaeger-LeCoultre produce internamente oltre 1.200 componenti distinti e ha depositato più di 400 brevetti. Il Reverso (1931), con cassa girevole nata per proteggere il quadrante nei campi da polo in India, è il watch design più copiato della storia. Il Calibre 101, con 98 componenti in 1 grammo di peso, è il più piccolo movimento meccanico al mondo.</p></div>
+        <div class="maison-notable">
+          <span class="maison-notable-label" data-i18n="iconicModels">Modelli iconici</span>
+          <ul class="maison-models"><li>Reverso (1931)</li><li>Master Ultra Thin Perpetual</li><li>Memovox (1956)</li><li>Hybris Mechanica Calibre 185</li></ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- INNOVAZIONI -->
+<section id="innovazioni">
+  <div class="page-section">
+    <div class="section-header">
+      <h2 class="section-title" data-i18n="secInnTitle">Innovazioni tecniche</h2>
+      <span class="label" data-i18n="secInnLabel">Le invenzioni che hanno cambiato il polso</span>
+    </div>
+    <table class="inn-table">
+      <thead>
+        <tr>
+          <th data-i18n="thYear">Anno</th>
+          <th data-i18n="thInnovation">Innovazione</th>
+          <th data-i18n="thManuf">Manifattura</th>
+          <th data-i18n="thImpact">Impatto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1926</td><td data-i18n="inn1926">Cassa Oyster impermeabile</td><td>Rolex</td><td data-i18n="inn1926i">Standard globale per tutti gli orologi sportivi. La corona a vite è norma dell'industria da allora.</td></tr>
+        <tr><td>1931</td><td data-i18n="inn1931a">Rotore perpetuo a 360°</td><td>Rolex</td><td data-i18n="inn1931ai">Tutti i movimenti automatici moderni si basano su questo principio. Fine della carica manuale.</td></tr>
+        <tr><td>1931</td><td data-i18n="inn1931b">Cassa reversibile</td><td>Jaeger-LeCoultre</td><td data-i18n="inn1931bi">Il Reverso introduce la cassa girevole per proteggere il vetro. Design iconico più replicato della storia.</td></tr>
+        <tr><td>1949</td><td data-i18n="inn1949">Bilanciere a oscillazione libera</td><td>IWC / Pellaton</td><td data-i18n="inn1949i">Resistenza agli urti e ai campi magnetici senza capsula. Adottato in ambito militare e professionale.</td></tr>
+        <tr><td>1953</td><td data-i18n="inn1953">Lunetta girevole unidirezionale</td><td>Blancpain / Rolex</td><td data-i18n="inn1953i">Standard di sicurezza subacqueo: può solo decrementare il tempo, mai incrementarlo per errore.</td></tr>
+        <tr><td>1969</td><td data-i18n="inn1969">Movimento al quarzo commerciale</td><td>Seiko</td><td data-i18n="inn1969i">Precisione 10× superiore al meccanico a costo marginale. Quasi distrugge l'industria svizzera.</td></tr>
+        <tr><td>1972</td><td data-i18n="inn1972">Sport di lusso in acciaio integrato</td><td>Audemars Piguet</td><td data-i18n="inn1972i">Royal Oak: crea la categoria "sport luxury", oggi il segmento a maggiore crescita del mercato.</td></tr>
+        <tr><td>1994</td><td data-i18n="inn1994">Grande data a doppio disco</td><td>A. Lange &amp; Söhne</td><td data-i18n="inn1994i">Salto istantaneo a mezzanotte, leggibilità superiore. Tecnica adottata da decine di manifatture.</td></tr>
+        <tr><td>2001</td><td data-i18n="inn2001">Spirale in silicio</td><td>Patek / Rolex / Breguet</td><td data-i18n="inn2001i">Antimagnetica, antiattriti, immune all'umidità. La più grande innovazione meccanica del XXI secolo.</td></tr>
+        <tr><td>2015</td><td data-i18n="inn2015">Smartwatch con biometrica</td><td>Apple</td><td data-i18n="inn2015i">50M pezzi/anno. Ridefinisce la funzione del polso e paradossalmente rilancia il meccanico di lusso.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <span class="footer-brand" data-i18n="logoMain">L'Arte del Tempo</span>
+      <p class="footer-tagline" data-i18n="footerTagline">Una storia di precisione, ingegneria e ossessione artigianale.</p>
+    </div>
+    <div class="footer-sources">
+      <p data-i18n="footerSources">Fonti</p>
+      <ul>
+        <li>Donzé P.-Y., <em>History of the Swiss Watch Industry</em> (2011)</li>
+        <li>Fléchon D., <em>The Mastery of Time</em> (2011)</li>
+        <li>Jaquet E. &amp; Chapuis A., <em>History of the Self-Winding Watch</em> (1952)</li>
+        <li>Fondation de la Haute Horlogerie — hautehorlogerie.org</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════
+//  TRANSLATIONS
+// ═══════════════════════════════════════════
+const T = {
+  it: {
+    logoMain:"L'Arte del Tempo", logoSub:"Storia dell'Orologeria da Polso",
+    navOrigini:"Origini", navStoria:"Cronologia", navMaison:"Maison", navInnovazioni:"Innovazioni",
+    heroLabel:"Una storia di precisione & arte",
+    heroH1:"L'Arte<br><em>del Tempo</em>",
+    heroCaption:"Dall'orologio da tasca al polso: due secoli di ingegneria, estetica e ossessione per la perfezione nei grandi ateliers di Ginevra, Le Brassus e Glashütte.",
+    secOriginiTitle:"Origini", secOriginiLabel:"Dal 1868",
+    origP1:"L'orologio da polso nasce come oggetto femminile — un gioiello con movimento — nella seconda metà dell'Ottocento. Fu Patek Philippe, nel 1868, a produrre per la Contessa Koscowicz d'Ungheria il primo esemplare documentato: un bracciale decorato con un minuscolo calibro a carica manuale. Non uno strumento, ma un ornamento che misurava il tempo per caso.",
+    origP2:"Tutto cambia con i conflitti militari. Durante la Seconda Guerra Boera (1899–1902), i soldati britannici iniziarono a legare al polso con strisce di cuoio i loro orologi da tasca, per avere le mani libere in combattimento. L'efficienza militare trasformò un oggetto di lusso femminile in una necessità maschile.",
+    origP3:"Nel 1904, Louis Cartier — su richiesta dell'aviatore brasiliano Alberto Santos-Dumont, stanco di tirar fuori l'orologio dalla tasca mentre pilotava — progettò la <em>Santos</em>: cassa quadrata, bracciale in pelle, viti a vista. Il primo orologio da polso maschile di design.",
+    pullQuote:'"Non si possiede mai un Patek Philippe. Lo si custodisce per la prossima generazione."',
+    pullCite:"Patek Philippe — Motto istituzionale, campagna 1996",
+    origP4:"La Grande Guerra (1914–18) fu il vero battesimo di massa. Milioni di soldati tornarono dal fronte con l'orologio al polso: un'abitudine nuova che nel dopoguerra diventò norma sociale.",
+    origP5:"La risposta fu tecnica prima che estetica: casse più robuste, movimenti antiurto, cristalli più resistenti. Ma anche estetica: il quadrante divenne un campo di progettazione, le lancette oggetti di stile, il bracciale una questione di identità.",
+    origP6:"Ciò che seguì — negli anni Trenta, Cinquanta, negli anni ruggenti prima della crisi al quarzo — è la storia di come una decina di manifatture svizzere, tedesche e francesi abbiano definito il linguaggio visivo e meccanico del tempo misurato sul corpo umano.",
+    secStoriaTitle:"Cronologia", secStoriaLabel:"1868 — Oggi",
+    tl1868Title:"Il primo orologio da polso documentato", tl1868Text:"Patek Philippe produce per la Contessa Koscowicz di Ungheria un orologio a forma di bracciale con calibro a carica manuale. È femminile, decorativo, più gioiello che strumento. Il movimento è minuscolo, la precisione secondaria all'estetica. È il punto zero.",
+    tl1904Title:"Santos — <em>il polso diventa maschile</em>", tl1904Text:"Louis Cartier disegna per l'aviatore Alberto Santos-Dumont il primo orologio da polso maschile di progetto consapevole. Cassa quadrata, viti a vista sul lunotto, bracciale integrato. Il razionale tecnico produce un'icona estetica senza tempo.",
+    tl1926Title:"La prima cassa impermeabile — <em>Oyster</em>", tl1926Text:"Hans Wilsdorf brevetta la cassa Oyster con corona a vite. Il sistema isola ermeticamente il movimento da acqua e polvere. Mercedes Gleitze attraversa la Manica con l'Oyster al polso. È il primo uso documentato di un'atleta come testimonial orologiero.",
+    tl1931Title:"Il rotore perpetuo", tl1931Text:"Rolex introduce il meccanismo Perpetual: un rotore centrale a 360° che converte il movimento del polso in energia cinetica. Fine della carica manuale quotidiana. Il principio meccanico è ancora alla base di tutti i movimenti automatici moderni.",
+    tl1953Title:"Fifty Fathoms — <em>il subacqueo moderno</em>", tl1953Text:"Blancpain produce su commissione della Marina militare francese il Fifty Fathoms: lunetta girevole unidirezionale, resistenza a 91 metri. La lunetta può solo decrementare il tempo residuo — un vincolo di sicurezza diventato standard globale.",
+    tl1969Title:"La crisi al quarzo", tl1969Text:"Seiko lancia l'Astron, il primo orologio al quarzo commerciale: oscillatore a 8.192 Hz, precisione dieci volte superiore al meccanico. In un decennio, centinaia di manifatture svizzere chiudono. La Quartz Crisis è la più grande disruption della storia orologiera.",
+    tl1972Title:"Royal Oak — <em>l'acciaio diventa lusso</em>", tl1972Text:"Gérald Genta disegna in una notte il Royal Oak: cassa ottagonale in acciaio, viti a vista, quadrante «tapisserie». Primo orologio sportivo in acciaio venduto a prezzo superiore all'oro. La categoria «sport di lusso» nasce qui.",
+    tl1994Title:"La rinascita sassone", tl1994Text:"Dopo 46 anni di silenzio forzato, Walter Lange rifonda A. Lange & Söhne a Glashütte. Al Salone di Ginevra 1994 presenta il Lange 1: grande data a doppio disco, platina in tre quarti in argento. La Sassonia riprende il posto che le spetta.",
+    tl2015Title:"Il polso diventa schermo", tl2015Text:"Apple Watch ridefinisce la funzione del polso: notifiche, salute, pagamenti. Le vendite superano l'intera industria svizzera per numero di pezzi. Paradossalmente, il mercato dell'alta orologeria meccanica cresce in valore.",
+    secMaisonTitle:"Le Maison", secMaisonLabel:"Manifatture storiche",
+    iconicModels:"Modelli iconici",
+    m1Founded:"Fondata nel 1839 · Ginevra", m1Desc:"Manifattura indipendente a controllo familiare — l'unica tra i grandi nomi. Ogni movimento è assemblato e certificato internamente. Detiene il record di complicazione meccanica più alta: il Calibre 89 con 33 funzioni. I prezzi sul mercato secondario spesso superano quelli di listino.",
+    m2Founded:"Fondata nel 1875 · Le Brassus", m2Desc:"L'unica grande manifattura ancora nella Valle de Joux. Di proprietà delle famiglie fondatrici Audemars e Piguet. Il Royal Oak del 1972 ha ridefinito il lusso sportivo. Specialisti di tourbillon ultra-sottili: il Calibre 2924 misura 2,93 mm di spessore.",
+    m3Founded:"Fondata nel 1845 · Glashütte", m3Desc:"La risposta tedesca alla Haute Horlogerie svizzera: platina in tre quarti in argento massiccio, viti azzurrate a mano, ruote dorate. La grande data a doppio disco con salto istantaneo è un'invenzione Lange. Principio etico: ogni parte ha la stessa cura, vista o no.",
+    m4Founded:"Fondata nel 1755 · Ginevra", m4Desc:"La manifattura con la storia continua più lunga del mondo — ininterrotta dal 1755. Il Poinçon de Genève contraddistingue ogni pezzo. Il Patrimony Contemporaine è tra i movimenti a carica manuale più piatti mai prodotti.",
+    m5Founded:"Fondata nel 1833 · Le Sentier", m5Desc:'Chiamata "la Grande Maison" dalla Valle de Joux, produce internamente oltre 1.200 componenti distinti. Il Reverso (1931) è il watch design più copiato della storia. Il Calibre 101, con 98 componenti in 1 grammo, è il più piccolo movimento meccanico al mondo.',
+    secInnTitle:"Innovazioni tecniche", secInnLabel:"Le invenzioni che hanno cambiato il polso",
+    thYear:"Anno", thInnovation:"Innovazione", thManuf:"Manifattura", thImpact:"Impatto",
+    inn1926:"Cassa Oyster impermeabile", inn1926i:"Standard globale per tutti gli orologi sportivi. La corona a vite è norma dell'industria da allora.",
+    inn1931a:"Rotore perpetuo a 360°", inn1931ai:"Tutti i movimenti automatici moderni si basano su questo principio. Fine della carica manuale.",
+    inn1931b:"Cassa reversibile", inn1931bi:"Il Reverso introduce la cassa girevole. Design iconico più replicato della storia.",
+    inn1949:"Bilanciere a oscillazione libera", inn1949i:"Resistenza agli urti e ai campi magnetici. Adottato in ambito militare e professionale.",
+    inn1953:"Lunetta girevole unidirezionale", inn1953i:"Standard di sicurezza subacqueo: può solo decrementare il tempo, mai incrementarlo.",
+    inn1969:"Movimento al quarzo commerciale", inn1969i:"Precisione 10× superiore al meccanico. Quasi distrugge l'industria svizzera.",
+    inn1972:"Sport di lusso in acciaio integrato", inn1972i:'Royal Oak: crea la categoria "sport luxury", oggi il segmento a maggiore crescita.',
+    inn1994:"Grande data a doppio disco", inn1994i:"Salto istantaneo a mezzanotte. Tecnica adottata da decine di manifatture.",
+    inn2001:"Spirale in silicio", inn2001i:"Antimagnetica, antiattriti, immune all'umidità. La più grande innovazione meccanica del XXI secolo.",
+    inn2015:"Smartwatch con biometrica", inn2015i:"50M pezzi/anno. Ridefinisce la funzione del polso e rilancia paradossalmente il meccanico di lusso.",
+    footerTagline:"Una storia di precisione, ingegneria e ossessione artigianale.",
+    footerSources:"Fonti"
+  },
+  en: {
+    logoMain:"The Art of Time", logoSub:"History of the Wristwatch",
+    navOrigini:"Origins", navStoria:"Timeline", navMaison:"Maisons", navInnovazioni:"Innovations",
+    heroLabel:"A story of precision & art",
+    heroH1:"The Art<br><em>of Time</em>",
+    heroCaption:"From pocket watch to wrist: two centuries of engineering, aesthetics and obsession for perfection in the great ateliers of Geneva, Le Brassus and Glashütte.",
+    secOriginiTitle:"Origins", secOriginiLabel:"Since 1868",
+    origP1:"The wristwatch was born as a feminine object — a jewel with a movement — in the second half of the nineteenth century. It was Patek Philippe, in 1868, that produced for Countess Koscowicz of Hungary the first documented example: a decorated bracelet housing a tiny hand-wound calibre. Not a tool, but an ornament that measured time by accident.",
+    origP2:"Everything changed with military conflicts. During the Second Boer War (1899–1902), British soldiers began strapping their pocket watches to their wrists with leather strips, to keep their hands free in combat. Military efficiency transformed a feminine luxury object into a masculine necessity.",
+    origP3:"In 1904, Louis Cartier — at the request of Brazilian aviator Alberto Santos-Dumont, tired of fumbling for his pocket watch in flight — designed the <em>Santos</em>: square case, exposed screws, leather strap. The first deliberately designed men's wristwatch.",
+    pullQuote:'"You never actually own a Patek Philippe. You merely look after it for the next generation."',
+    pullCite:"Patek Philippe — Institutional motto, 1996 campaign",
+    origP4:"The Great War (1914–18) was the true mass baptism. Millions of soldiers returned from the front with a watch on their wrist: a new habit that became social norm in the post-war years. Swiss manufactures, concentrated in the Jura and the Vallée de Joux, suddenly faced industrial demand for a product they had always made by hand.",
+    origP5:"The response was technical before it was aesthetic: sturdier cases, shock-resistant movements, stronger crystals. But also aesthetic: the dial became a design canvas, hands objects of style, the bracelet a question of identity.",
+    origP6:"What followed — through the thirties, fifties, the roaring years before the quartz crisis — is the story of how a handful of Swiss, German and French manufactures defined the visual and mechanical language of time worn on the human body.",
+    secStoriaTitle:"Timeline", secStoriaLabel:"1868 — Today",
+    tl1868Title:"The first documented wristwatch", tl1868Text:"Patek Philippe produces for Countess Koscowicz of Hungary a bracelet-watch with a hand-wound calibre. Feminine, decorative, more jewel than instrument. The movement is tiny, precision secondary to aesthetics. Ground zero.",
+    tl1904Title:"Santos — <em>the wrist turns masculine</em>", tl1904Text:"Louis Cartier designs for aviator Alberto Santos-Dumont the first deliberately conceived men's wristwatch. Square case, visible screws, integrated strap. The square shape was chosen so it would not roll off the dashboard. Technical rationale produces a timeless aesthetic icon.",
+    tl1926Title:"The first waterproof case — <em>Oyster</em>", tl1926Text:"Hans Wilsdorf patents the Oyster case with screw-down crown. The system hermetically seals the movement from water and dust. Mercedes Gleitze swims the English Channel wearing the Oyster. The first documented use of an athlete as a watch ambassador.",
+    tl1931Title:"The perpetual rotor", tl1931Text:"Rolex introduces the Perpetual mechanism: a central 360° rotor converting wrist movement into kinetic energy, rewinding the mainspring. The end of daily hand-winding. The mechanical principle underpins every modern automatic movement.",
+    tl1953Title:"Fifty Fathoms — <em>the modern diver's watch</em>", tl1953Text:"Blancpain produces on commission for the French Navy the Fifty Fathoms: unidirectional rotating bezel, 91-metre water resistance. The bezel can only count time down, never up — a safety constraint that became the global standard for every diving watch.",
+    tl1969Title:"The quartz crisis", tl1969Text:"Seiko launches the Astron, the first commercial quartz watch: crystal oscillator at 8,192 Hz, ten times more accurate than mechanical, at a fraction of the production cost. Within a decade, hundreds of Swiss manufactures close. The Quartz Crisis is the greatest industrial disruption in watchmaking history.",
+    tl1972Title:"Royal Oak — <em>steel becomes luxury</em>", tl1972Text:'Gérald Genta sketches the Royal Oak for Audemars Piguet overnight: octagonal steel case, visible screws, integrated bracelet, "tapisserie" dial. The first luxury sport watch in steel sold at a price above gold. The "sport luxury" category is born here.',
+    tl1994Title:"The Saxon renaissance", tl1994Text:"After 46 years of forced silence (the manufacture was nationalised by the GDR in 1948), Walter Lange refounds A. Lange & Söhne in Glashütte. At the 1994 Geneva Salon he presents the Lange 1: off-centre big date, three-quarter silver plate, visible gear train. Saxony reclaims its rightful place.",
+    tl2015Title:"The wrist becomes a screen", tl2015Text:"Apple Watch redefines the wrist: notifications, health, payments, communication. Sales by unit volume surpass the entire Swiss industry. The mechanical response is paradoxical: the luxury watch market grows in value. When everything measures time perfectly, handcrafted imperfection becomes the luxury argument.",
+    secMaisonTitle:"The Maisons", secMaisonLabel:"Historic manufactures",
+    iconicModels:"Iconic models",
+    m1Founded:"Founded 1839 · Geneva", m1Desc:"The only independent family-controlled manufacture among the great names. Every movement is assembled, regulated and certified in-house under the Patek Philippe Seal. Holds the record for the most complicated mechanical watch: the Calibre 89 with 33 complications. Secondary market prices routinely exceed retail.",
+    m2Founded:"Founded 1875 · Le Brassus", m2Desc:"The only major manufacture still in the Vallée de Joux, the historic cradle of Haute Horlogerie. Still owned by the founding Audemars and Piguet families. The 1972 Royal Oak redefined sport luxury. Specialists in ultra-thin tourbillons: the Calibre 2924 measures just 2.93 mm thick.",
+    m3Founded:"Founded 1845 · Glashütte", m3Desc:"The German answer to Swiss Haute Horlogerie, with a radically different aesthetic: solid-silver three-quarter plate, hand-blued screws, gilded wheels, Glashütte finishing visible even on parts hidden from the wearer. The jumping big date is a Lange invention. Ethical principle: every part receives the same care, seen or unseen.",
+    m4Founded:"Founded 1755 · Geneva", m4Desc:"The watch manufacture with the longest unbroken history in the world — continuous since 1755. The Poinçon de Genève, the strictest quality hallmark in watchmaking, distinguishes every piece. The Patrimony Contemporaine is among the flattest hand-wound movements ever produced.",
+    m5Founded:"Founded 1833 · Le Sentier", m5Desc:'Called "the Grande Maison" in the Vallée de Joux, Jaeger-LeCoultre produces over 1,200 distinct components in-house and holds more than 400 patents. The Reverso (1931), with its reversible case born to protect the dial on polo fields in India, is the most copied watch design in history. The Calibre 101, with 98 components weighing 1 gram, is the smallest mechanical movement in the world.',
+    secInnTitle:"Technical innovations", secInnLabel:"The inventions that changed the wrist",
+    thYear:"Year", thInnovation:"Innovation", thManuf:"Manufacture", thImpact:"Impact",
+    inn1926:"Waterproof Oyster case", inn1926i:"Global standard for all sport watches. The screw-down crown has been industry norm ever since.",
+    inn1931a:"360° perpetual rotor", inn1931ai:"Every modern automatic movement is based on this principle. End of daily hand-winding.",
+    inn1931b:"Reversible case", inn1931bi:"The Reverso introduces the rotating case. The most replicated iconic watch design in history.",
+    inn1949:"Free-sprung balance wheel", inn1949i:"Shock and magnetic-field resistance without a capsule. Adopted by military and professional users.",
+    inn1953:"Unidirectional rotating bezel", inn1953i:"Diver's safety standard: can only count time down, never up by mistake.",
+    inn1969:"Commercial quartz movement", inn1969i:"10× more accurate than mechanical at marginal cost. Nearly destroys the Swiss industry.",
+    inn1972:"Integrated steel sport-luxury case", inn1972i:'Royal Oak: creates the "sport luxury" category, today the fastest-growing market segment.',
+    inn1994:"Jumping big date", inn1994i:"Instant jump at midnight, superior legibility. Technique adopted by dozens of manufactures.",
+    inn2001:"Silicon hairspring", inn2001i:"Anti-magnetic, frictionless, humidity-immune. The greatest mechanical innovation of the 21st century.",
+    inn2015:"Biometric smartwatch", inn2015i:"50M units/year. Redefines the wrist and paradoxically relaunches luxury mechanical watchmaking.",
+    footerTagline:"A story of precision, engineering and artisanal obsession.",
+    footerSources:"Sources"
+  },
+  de: {
+    logoMain:"Die Kunst der Zeit", logoSub:"Geschichte der Armbanduhr",
+    navOrigini:"Ursprünge", navStoria:"Chronologie", navMaison:"Manufakturen", navInnovazioni:"Innovationen",
+    heroLabel:"Eine Geschichte von Präzision & Kunst",
+    heroH1:"Die Kunst<br><em>der Zeit</em>",
+    heroCaption:"Von der Taschenuhr zum Handgelenk: zwei Jahrhunderte Ingenieurskunst, Ästhetik und Perfektion in den großen Ateliers von Genf, Le Brassus und Glashütte.",
+    secOriginiTitle:"Ursprünge", secOriginiLabel:"Seit 1868",
+    origP1:"Die Armbanduhr entstand als weibliches Objekt — ein Schmuckstück mit Uhrwerk — in der zweiten Hälfte des 19. Jahrhunderts. Es war Patek Philippe, der 1868 für Gräfin Koscowicz aus Ungarn das erste dokumentierte Exemplar fertigte: ein dekoratives Armband mit einem winzigen Handaufzugswerk. Kein Werkzeug, sondern ein Schmuckstück, das zufällig die Zeit maß.",
+    origP2:"Alles änderte sich mit dem Militär. Im Zweiten Burenkrieg (1899–1902) begannen britische Soldaten, ihre Taschenuhren mit Lederstreifen am Handgelenk zu befestigen, um die Hände frei zu haben. Militärische Effizienz verwandelte ein weibliches Luxusobjekt in eine männliche Notwendigkeit.",
+    origP3:"1904 entwarf Louis Cartier — auf Wunsch des brasilianischen Flugpioniers Alberto Santos-Dumont, der es leid war, im Cockpit nach seiner Taschenuhr zu greifen — die <em>Santos</em>: quadratisches Gehäuse, sichtbare Schrauben, Lederarmband. Die erste bewusst gestaltete Herren-Armbanduhr.",
+    pullQuote:'"Man besitzt nie wirklich eine Patek Philippe. Man bewahrt sie für die nächste Generation."',
+    pullCite:"Patek Philippe — Institutionelles Motto, Kampagne 1996",
+    origP4:"Der Erste Weltkrieg (1914–18) war die eigentliche Massentaufe. Millionen Soldaten kehrten mit einer Uhr am Handgelenk von der Front zurück: eine neue Gewohnheit, die in der Nachkriegszeit zur gesellschaftlichen Norm wurde.",
+    origP5:"Die Antwort war zunächst technisch, dann ästhetisch: robustere Gehäuse, stoßfeste Werke, widerstandsfähigere Gläser. Aber auch das Zifferblatt wurde zur Gestaltungsfläche, Zeiger zu Stilobjekten, das Armband zur Frage der Identität.",
+    origP6:"Was folgte — in den Dreißigern, Fünfzigern, den goldenen Jahren vor der Quarzkrise — ist die Geschichte, wie eine Handvoll Schweizer, deutscher und französischer Manufakturen die visuelle und mechanische Sprache der am menschlichen Körper getragenen Zeit definierten.",
+    secStoriaTitle:"Chronologie", secStoriaLabel:"1868 — Heute",
+    tl1868Title:"Die erste dokumentierte Armbanduhr", tl1868Text:"Patek Philippe fertigt für Gräfin Koscowicz aus Ungarn eine Armbanduhr in Armreifform mit Handaufzugswerk. Feminin, dekorativ, eher Schmuck als Instrument. Das Werk ist winzig, die Präzision nebensächlich. Der Ausgangspunkt.",
+    tl1904Title:"Santos — <em>das Handgelenk wird männlich</em>", tl1904Text:"Louis Cartier entwirft für Flieger Alberto Santos-Dumont die erste bewusst konzipierte Herren-Armbanduhr. Quadratisches Gehäuse, sichtbare Schrauben am Lünette, integriertes Armband. Das technische Erfordernis schafft eine zeitlose ästhetische Ikone.",
+    tl1926Title:"Das erste wasserdichte Gehäuse — <em>Oyster</em>", tl1926Text:"Hans Wilsdorf patentiert das Oyster-Gehäuse mit verschraubter Krone. Das System dichtet das Werk hermetisch gegen Wasser und Staub ab. Mercedes Gleitze durchschwimmt den Ärmelkanal mit der Oyster am Handgelenk. Der erste dokumentierte Einsatz eines Sportlers als Uhrenbotschafter.",
+    tl1931Title:"Der Perpetual-Rotor", tl1931Text:"Rolex führt den Perpetual-Mechanismus ein: ein zentraler 360°-Rotor, der die Handgelenksbewegung in kinetische Energie umwandelt und die Zugfeder aufzieht. Ende des täglichen Handaufzugs. Das mechanische Prinzip liegt noch heute allen automatischen Werken zugrunde.",
+    tl1953Title:"Fifty Fathoms — <em>die moderne Taucheruhr</em>", tl1953Text:"Blancpain fertigt im Auftrag der französischen Marine die Fifty Fathoms: unidirektionale Drehblende, 91 Meter Wasserdichte. Die Lünette kann nur die verbleibende Zeit verringern, nie erhöhen — ein Sicherheitsstandard, der weltweit für Taucheruhren gilt.",
+    tl1969Title:"Die Quarzkrise", tl1969Text:"Seiko bringt die Astron auf den Markt, die erste kommerzielle Quarzuhr: Kristalloszillator mit 8.192 Hz, zehnfach präziser als mechanisch. Innerhalb eines Jahrzehnts schließen Hunderte Schweizer Manufakturen. Die Quarzkrise ist die größte industrielle Disruption in der Uhrmachergeschichte.",
+    tl1972Title:"Royal Oak — <em>Stahl wird Luxus</em>", tl1972Text:'Gérald Genta skizziert die Royal Oak über Nacht: achteckiges Stahlgehäuse, sichtbare Schrauben, integriertes Armband, "Tapisserie"-Zifferblatt. Erste Sport-Luxusuhr aus Stahl, die teurer verkauft wurde als eine Golduhr. Die Kategorie "Sport Luxus" entsteht hier.',
+    tl1994Title:"Die sächsische Renaissance", tl1994Text:"Nach 46 Jahren erzwungenen Schweigens (die Manufaktur wurde 1948 von der DDR verstaatlicht) gründet Walter Lange A. Lange & Söhne in Glashütte neu. Auf dem Genfer Salon 1994 präsentiert er den Lange 1: exzentrisch platziertes Großdatum, Dreiviertellager in Silber, sichtbarer Räderaufzug. Sachsen nimmt seinen rechtmäßigen Platz zurück.",
+    tl2015Title:"Das Handgelenk wird zum Bildschirm", tl2015Text:"Die Apple Watch definiert die Funktion des Handgelenks neu: Benachrichtigungen, Gesundheit, Bezahlung. Die Stückzahlen übertreffen die gesamte Schweizer Industrie. Die mechanische Antwort ist paradox: der Markt für mechanische Hochuhrmacherei wächst im Wert.",
+    secMaisonTitle:"Die Manufakturen", secMaisonLabel:"Historische Häuser",
+    iconicModels:"Ikonische Modelle",
+    m1Founded:"Gegründet 1839 · Genf", m1Desc:"Die einzige unabhängige, familiengeführte Manufaktur unter den großen Namen. Jedes Werk wird im eigenen Haus montiert und mit dem Patek Philippe Seal zertifiziert. Hält den Rekord für die komplizierteste mechanische Uhr: das Calibre 89 mit 33 Komplikationen. Sekundärmarktpreise übersteigen oft den Listenpreis.",
+    m2Founded:"Gegründet 1875 · Le Brassus", m2Desc:"Die einzige große Manufaktur, die noch im Vallée de Joux ansässig ist. Im Besitz der Gründerfamilien Audemars und Piguet. Die Royal Oak von 1972 definierte den Sport-Luxus neu. Spezialisten für ultraflache Tourbillons: das Calibre 2924 misst nur 2,93 mm.",
+    m3Founded:"Gegründet 1845 · Glashütte", m3Desc:"Die deutsche Antwort auf die Schweizer Haute Horlogerie: massives Silber-Dreiviertel-Platine, von Hand gebläute Schrauben, vergoldete Räder, Glashütter Finissage auch an unsichtbaren Teilen. Das springende Großdatum ist eine Lange-Erfindung. Ethisches Prinzip: jedes Teil erhält dieselbe Sorgfalt, sichtbar oder nicht.",
+    m4Founded:"Gegründet 1755 · Genf", m4Desc:"Die Uhrenmanufaktur mit der längsten ununterbrochenen Geschichte der Welt — seit 1755. Das Poinçon de Genève, das strengste Gütezeichen der Uhrmacherei, kennzeichnet jedes Stück. Das Patrimony Contemporaine gehört zu den flachsten je produzierten Handaufzugswerken.",
+    m5Founded:"Gegründet 1833 · Le Sentier", m5Desc:'Als "Grande Maison" im Vallée de Joux bekannt, produziert Jaeger-LeCoultre über 1.200 verschiedene Bauteile im eigenen Haus und hält mehr als 400 Patente. Der Reverso (1931), mit drehbarem Gehäuse zum Schutz des Zifferblatts auf Polofeldern in Indien, ist das meistkopierte Uhrendesign der Geschichte. Das Calibre 101 mit 98 Bauteilen auf 1 Gramm ist das kleinste mechanische Werk der Welt.',
+    secInnTitle:"Technische Innovationen", secInnLabel:"Die Erfindungen, die das Handgelenk veränderten",
+    thYear:"Jahr", thInnovation:"Innovation", thManuf:"Manufaktur", thImpact:"Bedeutung",
+    inn1926:"Wasserdichtes Oyster-Gehäuse", inn1926i:"Weltweiter Standard für alle Sport-Uhren. Die verschraubte Krone ist seitdem Branchennorm.",
+    inn1931a:"360°-Perpetual-Rotor", inn1931ai:"Alle modernen Automatikwerke basieren auf diesem Prinzip. Ende des täglichen Handaufzugs.",
+    inn1931b:"Wendebares Gehäuse", inn1931bi:"Der Reverso führt das drehbare Gehäuse ein. Das meistkopierte ikonische Uhrendesign der Geschichte.",
+    inn1949:"Freitragende Unruh", inn1949i:"Stoß- und Magnetfeldresistenz ohne Kapsel. Von Militär und Profis übernommen.",
+    inn1953:"Unidirektionale Drehblende", inn1953i:"Taucher-Sicherheitsstandard: kann die Zeit nur verringern, nie versehentlich erhöhen.",
+    inn1969:"Kommerzielles Quarzwerk", inn1969i:"10× präziser als mechanisch zu marginalen Kosten. Beinahe Vernichtung der Schweizer Industrie.",
+    inn1972:"Integriertes Stahl-Sport-Luxus-Gehäuse", inn1972i:'Royal Oak: erschafft die Kategorie "Sport Luxus", heute das am schnellsten wachsende Marktsegment.',
+    inn1994:"Springendes Großdatum", inn1994i:"Sofortiger Sprung um Mitternacht, überlegene Lesbarkeit. Von Dutzenden Manufakturen übernommen.",
+    inn2001:"Silizium-Spirale", inn2001i:"Antimagnetisch, reibungsarm, feuchtigkeitsbeständig. Die größte mechanische Innovation des 21. Jahrhunderts.",
+    inn2015:"Biometrische Smartwatch", inn2015i:"50 Mio. Stück/Jahr. Definiert das Handgelenk neu und belebt paradoxerweise die mechanische Luxusuhrmacherei.",
+    footerTagline:"Eine Geschichte von Präzision, Ingenieurskunst und handwerklicher Obsession.",
+    footerSources:"Quellen"
+  },
+  fr: {
+    logoMain:"L'Art du Temps", logoSub:"Histoire de la Montre-bracelet",
+    navOrigini:"Origines", navStoria:"Chronologie", navMaison:"Maisons", navInnovazioni:"Innovations",
+    heroLabel:"Une histoire de précision & d'art",
+    heroH1:"L'Art<br><em>du Temps</em>",
+    heroCaption:"De la montre de poche au poignet : deux siècles d'ingénierie, d'esthétique et d'obsession pour la perfection dans les grands ateliers de Genève, Le Brassus et Glashütte.",
+    secOriginiTitle:"Origines", secOriginiLabel:"Depuis 1868",
+    origP1:"La montre-bracelet naît comme objet féminin — un bijou avec mouvement — dans la seconde moitié du XIXe siècle. C'est Patek Philippe qui, en 1868, produit pour la Comtesse Koscowicz de Hongrie le premier exemplaire documenté : un bracelet décoré abritant un minuscule calibre à remontage manuel. Non pas un outil, mais un ornement qui mesurait le temps par accident.",
+    origP2:"Tout change avec les conflits militaires. Pendant la Seconde Guerre des Boers (1899–1902), les soldats britanniques commencèrent à attacher leurs montres de gousset au poignet avec des lanières de cuir, pour avoir les mains libres au combat. L'efficacité militaire transforma un objet de luxe féminin en nécessité masculine.",
+    origP3:"En 1904, Louis Cartier — à la demande de l'aviateur brésilien Alberto Santos-Dumont, las de sortir sa montre de sa poche en vol — conçut la <em>Santos</em> : boîtier carré, vis apparentes, bracelet en cuir. La première montre-bracelet masculine délibérément conçue comme telle.",
+    pullQuote:'"On ne possède jamais vraiment une Patek Philippe. On en est le gardien pour les générations futures."',
+    pullCite:"Patek Philippe — Devise institutionnelle, campagne 1996",
+    origP4:"La Grande Guerre (1914–18) fut le véritable baptême de masse. Des millions de soldats revinrent du front avec une montre au poignet : une nouvelle habitude qui devint norme sociale dans l'après-guerre. Les manufactures suisses, concentrées dans le Jura et la Vallée de Joux, se trouvèrent confrontées à une demande industrielle pour un produit qu'elles avaient toujours fabriqué artisanalement.",
+    origP5:"La réponse fut d'abord technique : boîtiers plus robustes, mouvements anti-choc, verres plus résistants. Mais aussi esthétique : le cadran devint un espace de création, les aiguilles des objets de style, le bracelet une question d'identité.",
+    origP6:"Ce qui suivit — dans les années trente, cinquante, les années dorées avant la crise du quartz — est l'histoire de comment une poignée de manufactures suisses, allemandes et françaises ont défini le langage visuel et mécanique du temps porté sur le corps humain.",
+    secStoriaTitle:"Chronologie", secStoriaLabel:"1868 — Aujourd'hui",
+    tl1868Title:"La première montre-bracelet documentée", tl1868Text:"Patek Philippe produit pour la Comtesse Koscowicz de Hongrie une montre en forme de bracelet avec calibre à remontage manuel. Féminine, décorative, plus bijou qu'instrument. Le mouvement est minuscule, la précision secondaire à l'esthétique. Point zéro.",
+    tl1904Title:"Santos — <em>le poignet devient masculin</em>", tl1904Text:"Louis Cartier dessine pour l'aviateur Alberto Santos-Dumont la première montre-bracelet masculine délibérément conçue. Boîtier carré, vis apparentes sur la lunette, bracelet intégré. La forme carrée fut choisie pour éviter qu'elle ne roule sur le tableau de bord. Le rationnel technique produit une icône esthétique intemporelle.",
+    tl1926Title:"Le premier boîtier étanche — <em>Oyster</em>", tl1926Text:"Hans Wilsdorf brevète le boîtier Oyster à couronne vissée. Le système isole hermétiquement le mouvement de l'eau et de la poussière. Mercedes Gleitze traverse la Manche avec l'Oyster au poignet. Première utilisation documentée d'un athlète comme ambassadeur horloger.",
+    tl1931Title:"Le rotor perpétuel", tl1931Text:"Rolex introduit le mécanisme Perpetual : un rotor central à 360° qui convertit le mouvement du poignet en énergie cinétique, remontant le ressort moteur. Fin du remontage manuel quotidien. Le principe mécanique est encore à la base de tous les mouvements automatiques modernes.",
+    tl1953Title:"Fifty Fathoms — <em>la plongée moderne</em>", tl1953Text:"Blancpain produit sur commande de la Marine française la Fifty Fathoms : lunette tournante unidirectionnelle, résistance à 91 mètres. La lunette ne peut que décompter le temps résiduel, jamais l'augmenter — une contrainte de sécurité devenue standard mondial pour toute montre de plongée.",
+    tl1969Title:"La crise du quartz", tl1969Text:"Seiko lance l'Astron, la première montre à quartz commerciale : oscillateur à cristal à 8 192 Hz, dix fois plus précis que le mécanique, à un coût de production marginal. En une décennie, des centaines de manufactures suisses ferment. La crise du quartz est la plus grande disruption industrielle de l'histoire horlogère.",
+    tl1972Title:"Royal Oak — <em>l'acier devient luxe</em>", tl1972Text:'Gérald Genta dessine la Royal Oak en une nuit : boîtier octogonal en acier, vis apparentes, bracelet intégré, cadran "tapisserie". Première montre sport de luxe en acier vendue plus cher qu\'une montre en or. La catégorie "sport de luxe" naît ici.',
+    tl1994Title:"La renaissance saxonne", tl1994Text:"Après 46 ans de silence forcé (la manufacture fut nationalisée par la RDA en 1948), Walter Lange refonde A. Lange & Söhne à Glashütte. Au Salon de Genève 1994, il présente la Lange 1 : grande date décentrée à double disque, platine trois-quarts en argent. La Saxe reprend sa place légitime.",
+    tl2015Title:"Le poignet devient écran", tl2015Text:"L'Apple Watch redéfinit la fonction du poignet : notifications, santé, paiements. Les ventes en nombre de pièces dépassent l'ensemble de l'industrie suisse. La réponse mécanique est paradoxale : le marché de la haute horlogerie croît en valeur. Quand tout mesure le temps parfaitement, l'imperfection artisanale devient l'argument du luxe.",
+    secMaisonTitle:"Les Maisons", secMaisonLabel:"Manufactures historiques",
+    iconicModels:"Modèles iconiques",
+    m1Founded:"Fondée en 1839 · Genève", m1Desc:"La seule manufacture indépendante à contrôle familial parmi les grands noms. Chaque mouvement est assemblé, réglé et certifié en interne sous le Sceau Patek Philippe. Détient le record de la complication mécanique la plus élevée : le Calibre 89 avec 33 fonctions. Les prix sur le marché secondaire dépassent souvent le prix de vente.",
+    m2Founded:"Fondée en 1875 · Le Brassus", m2Desc:"La seule grande manufacture encore implantée dans la Vallée de Joux. Toujours propriété des familles fondatrices Audemars et Piguet. La Royal Oak de 1972 a redéfini le luxe sportif. Spécialistes des tourbillons ultra-plats : le Calibre 2924 mesure 2,93 mm d'épaisseur.",
+    m3Founded:"Fondée en 1845 · Glashütte", m3Desc:"La réponse allemande à la Haute Horlogerie suisse : platine trois-quarts en argent massif, vis bleuies à la main, roues dorées, finition Glashütte visible même sur les parties invisibles au porteur. La grande date à double disque à saut instantané est une invention Lange. Principe éthique : chaque pièce reçoit le même soin, vue ou non.",
+    m4Founded:"Fondée en 1755 · Genève", m4Desc:"La manufacture horlogère avec la plus longue histoire continue au monde — ininterrompue depuis 1755. Le Poinçon de Genève, le label de qualité le plus exigeant de l'horlogerie, distingue chaque pièce. Le Patrimony Contemporaine est parmi les mouvements à remontage manuel les plus plats jamais produits.",
+    m5Founded:"Fondée en 1833 · Le Sentier", m5Desc:'Surnommée "la Grande Maison" dans la Vallée de Joux, Jaeger-LeCoultre produit en interne plus de 1 200 composants distincts et détient plus de 400 brevets. La Reverso (1931), avec son boîtier pivotant né pour protéger le cadran sur les terrains de polo en Inde, est le design de montre le plus copié de l\'histoire. Le Calibre 101, avec 98 composants pour 1 gramme, est le plus petit mouvement mécanique du monde.',
+    secInnTitle:"Innovations techniques", secInnLabel:"Les inventions qui ont changé le poignet",
+    thYear:"Année", thInnovation:"Innovation", thManuf:"Manufacture", thImpact:"Impact",
+    inn1926:"Boîtier Oyster étanche", inn1926i:"Référence mondiale pour toutes les montres sport. La couronne vissée est norme de l'industrie depuis lors.",
+    inn1931a:"Rotor perpétuel 360°", inn1931ai:"Tous les mouvements automatiques modernes reposent sur ce principe. Fin du remontage manuel.",
+    inn1931b:"Boîtier réversible", inn1931bi:"La Reverso introduit le boîtier pivotant. Le design iconique le plus répliqué de l'histoire.",
+    inn1949:"Balancier à spiral libre", inn1949i:"Résistance aux chocs et aux champs magnétiques sans capsule. Adopté par les militaires et les professionnels.",
+    inn1953:"Lunette tournante unidirectionnelle", inn1953i:"Norme de sécurité plongée : ne peut que décompter le temps, jamais l'augmenter par erreur.",
+    inn1969:"Mouvement à quartz commercial", inn1969i:"10× plus précis que le mécanique à coût marginal. Failli détruire l'industrie suisse.",
+    inn1972:"Boîtier sport-luxe intégré en acier", inn1972i:'Royal Oak : crée la catégorie "sport de luxe", aujourd\'hui le segment à la plus forte croissance.',
+    inn1994:"Grande date à double disque", inn1994i:"Saut instantané à minuit, lisibilité supérieure. Technique adoptée par des dizaines de manufactures.",
+    inn2001:"Spiral en silicium", inn2001i:"Antimagnétique, anti-frottements, insensible à l'humidité. La plus grande innovation mécanique du XXIe siècle.",
+    inn2015:"Smartwatch biométrique", inn2015i:"50M pièces/an. Redéfinit le poignet et relance paradoxalement la haute horlogerie mécanique.",
+    footerTagline:"Une histoire de précision, d'ingénierie et d'obsession artisanale.",
+    footerSources:"Sources"
+  }
+};
+
+// ═══════════════════════════════════════════
+//  I18N ENGINE
+// ═══════════════════════════════════════════
+let currentLang = 'it';
+
+function applyLang(lang) {
+  currentLang = lang;
+  const dict = T[lang];
+  document.documentElement.lang = lang;
+
+  // plain text nodes
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+
+  // innerHTML (for <em> etc.)
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (dict[key] !== undefined) el.innerHTML = dict[key];
+  });
+
+  // update page title
+  document.title = dict.logoMain + ' — ' + dict.logoSub;
+
+  // update active button
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+});
+
+// ═══════════════════════════════════════════
+//  LIVE CLOCK
+// ═══════════════════════════════════════════
+function updateHands() {
+  const now = new Date();
+  const s = now.getSeconds() + now.getMilliseconds() / 1000;
+  const m = now.getMinutes() + s / 60;
+  const h = (now.getHours() % 12) + m / 60;
+  document.getElementById('handS').style.transform = `rotate(${s * 6}deg)`;
+  document.getElementById('handM').style.transform = `rotate(${m * 6}deg)`;
+  document.getElementById('handH').style.transform = `rotate(${h * 30}deg)`;
+}
+updateHands();
+setInterval(updateHands, 50);
+
+// ═══════════════════════════════════════════
+//  DIAL TICKS & NUMERALS
+// ═══════════════════════════════════════════
+(function buildDial() {
+  const chapter = document.getElementById('dialChapter');
+  const cx = 180;
+  const numerals = ['XII','I','II','III','IV','V','VI','VII','VIII','IX','X','XI'];
+  const rNum = 140, r = 168;
+  for (let i = 0; i < 60; i++) {
+    const isMaj = i % 5 === 0;
+    const tick = document.createElement('div');
+    tick.style.cssText = `position:absolute;left:50%;top:${isMaj?'6px':'8px'};width:${isMaj?'2px':'1px'};height:${isMaj?'18px':'8px'};background:${isMaj?'var(--ink2)':'rgba(15,13,10,0.25)'};margin-left:${isMaj?'-1px':'-0.5px'};transform-origin:50% ${cx}px;transform:rotate(${i*6}deg) translateX(-50%);`;
+    chapter.appendChild(tick);
+  }
+  numerals.forEach((n, i) => {
+    const angle = (i * 30 - 90) * Math.PI / 180;
+    const x = 50 + (rNum / r * 48) * Math.cos(angle);
+    const y = 50 + (rNum / r * 48) * Math.sin(angle);
+    const el = document.createElement('div');
+    el.textContent = n;
+    el.style.cssText = `position:absolute;left:${x}%;top:${y}%;transform:translate(-50%,-50%);font-family:'Playfair Display',serif;font-size:0.7rem;color:var(--ink);line-height:1;white-space:nowrap;`;
+    chapter.appendChild(el);
+  });
+})();
+
+// ═══════════════════════════════════════════
+//  SCROLL REVEAL
+// ═══════════════════════════════════════════
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.maison-item').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
